@@ -1,0 +1,35 @@
+<%- include("header") -%> 
+    <div class="container-fluid w-50 p-5">
+      <h1 class="p-3 text-light text-center fw-bold"><%= title %></h1>
+      <ul class="list-group mt-5 mb-5">
+        <%lists.forEach((e, i)=>{%>
+          <% if (e.name!="") { %>
+            <form action="/rm" method="post">
+              <li class="list-group-item p-4 fs-4">
+                <input
+                  class="form-check-input me-4"
+                  type="checkbox"
+                  id="checkbox<%=i%>"
+                />
+                <label class="form-check-label lbl" for="checkbox<%=i%>"
+                  ><%= e.name %></label
+                >
+                <input type="hidden" name="title" value="<%= title %>">
+                <button type="submit" name="btn" class="btn btn-danger float-end" value="<%= e._id %>">X</button>
+              </li>
+            </form>
+          <% } %>
+        <%})%>
+        <form action="/" method="post" class="p-2">
+          <input
+            type="text"
+            name="list"
+            autocomplete="off"
+            class="fs-4 list-input"
+            placeholder="New List"
+          />
+          <button type="submit" class="add-btn" name="btn" value="<%= title %>" >+</button>
+        </form>
+      </ul>
+    </div>
+<%- include("footer")  -%>  
